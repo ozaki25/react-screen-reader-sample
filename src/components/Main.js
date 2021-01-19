@@ -1,24 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { getItems } from '../api/qiita';
 
 function Main() {
   const [items, setItems] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  const fetchItems = async () => {
+  const onClick = async () => {
+    setLoading(true);
     setItems(await getItems());
+    setLoading(false);
   };
-
-  useEffect(() => {
-    console.log('Fetching');
-    fetchItems();
-  }, []);
-
-  console.log({ items });
 
   return (
     <main>
       <h1>Hello React Sample</h1>
-      {items ? (
+      <button onClick={onClick}>Get Items</button>
+      {loading && <p>...Loading</p>}
+      {items?.length && (
         <ul>
           {items.map(item => (
             <li key={item.id}>
@@ -26,8 +24,6 @@ function Main() {
             </li>
           ))}
         </ul>
-      ) : (
-        <p>...Loading</p>
       )}
     </main>
   );
