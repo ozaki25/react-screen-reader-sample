@@ -1,6 +1,11 @@
 import React, { forwardRef } from 'react';
+import { ItemType } from '../interfaces';
 
-function Items({ items }, ref) {
+type ItemsProps = {
+  items: ItemType[];
+};
+
+function Items({ items }: ItemsProps, ref) {
   return (
     <ul ref={ref} tabIndex={-1} style={{ outline: 'none' }}>
       {items.map(item => (
