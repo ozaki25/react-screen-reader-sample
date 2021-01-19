@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Items from './Items';
+import Loading from './Loading';
 import SrOnly from './SrOnly';
 import { getItems } from '../api/qiita';
 
@@ -20,16 +22,8 @@ function Main() {
     <main>
       <h1>Hello React Sample</h1>
       <button onClick={onClick}>Get Items</button>
-      {loading && <p>...Loading</p>}
-      {items?.length && (
-        <ul>
-          {items.map(item => (
-            <li key={item.id}>
-              <a href={item.url}>{item.title}</a>
-            </li>
-          ))}
-        </ul>
-      )}
+      {loading && <Loading />}
+      {items?.length && <Items items={items} />}
       <SrOnly text={message} />
     </main>
   );
