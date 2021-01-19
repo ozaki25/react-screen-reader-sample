@@ -1,6 +1,10 @@
 import React from 'react';
 
-function SrOnly({ text }) {
+type SrOnlyProps = {
+  text: string;
+};
+
+function SrOnly({ text }: SrOnlyProps) {
   return (
     <div
       aria-atomic="true"
