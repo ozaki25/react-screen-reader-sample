@@ -9,7 +9,7 @@ function Main() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
 
-  const ref = useRef(null);
+  const ref = useRef<HTMLUListElement>(null);
 
   const onClick = async () => {
     setLoading(true);
@@ -18,7 +18,7 @@ function Main() {
     setItems(result);
     setLoading(false);
     setMessage(`${result.length}件のデータを取得しました`);
-    ref.current.focus();
+    ref.current?.focus();
   };
 
   return (
