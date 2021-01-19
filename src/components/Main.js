@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Items from './Items';
 import Loading from './Loading';
 import SrOnly from './SrOnly';
@@ -9,6 +9,8 @@ function Main() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
 
+  const ref = useRef(null);
+
   const onClick = async () => {
     setLoading(true);
     setMessage('通信中です');
@@ -16,6 +18,7 @@ function Main() {
     setItems(result);
     setLoading(false);
     setMessage(`${result.length}件のデータを取得しました`);
+    ref.current.focus();
   };
 
   return (
@@ -23,7 +26,7 @@ function Main() {
       <h1>Hello React Sample</h1>
       <button onClick={onClick}>Get Items</button>
       {loading && <Loading />}
-      {items?.length && <Items items={items} />}
+      {items?.length && <Items items={items} ref={ref} />}
       <SrOnly text={message} />
     </main>
   );

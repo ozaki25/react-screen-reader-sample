@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 
-function Items({ items }) {
+function Items({ items }, ref) {
   return (
-    <ul>
+    <ul ref={ref} tabIndex="-1" style={{ outline: 'none' }}>
       {items.map(item => (
         <li key={item.id}>
           <a href={item.url}>{item.title}</a>
@@ -12,4 +12,4 @@ function Items({ items }) {
   );
 }
 
-export default Items;
+export default forwardRef(Items);
