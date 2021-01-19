@@ -3,11 +3,12 @@ import Items from './Items';
 import Loading from './Loading';
 import SrOnly from './SrOnly';
 import { getItems } from '../api/qiita';
+import { ItemType } from '../interfaces/index';
 
 function Main() {
-  const [items, setItems] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState('');
+  const [items, setItems] = useState<ItemType[] | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>('');
 
   const ref = useRef<HTMLUListElement>(null);
 
